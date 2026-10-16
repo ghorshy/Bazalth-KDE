@@ -1,0 +1,38 @@
+# Every color and size the theme uses. Edit, then run ./build.py.
+# Names and values mirror the desktop's theme file (Hyprland, Quickshell, rofi),
+# so syncing the two means copying values, never translating them.
+
+name = "Bazalth"
+
+[colors]
+# surfaces
+base         = "212121" # window background, menus, tooltips
+view         = "1a1a1a" # lists, editors, tables: one step below the window
+surface      = "424242" # buttons, hover, separators
+overlay      = "616161" # selected entry
+border       = "595959" # frames of menus, tooltips and fields
+borderActive = "eeeeee" # focused field
+shadow       = "1a1a1a" # darkest shade (Qt's "dark" role)
+
+# text
+text      = "fafafa"
+textDim   = "bdbdbd" # secondary text, unchecked indicators
+textFaint = "8f8f8f" # placeholders, disabled text, section labels
+
+# states (the theme is monochrome; these only mark meaning)
+link     = "4899ff"
+positive = "a9dc76"
+warning  = "ffd866"
+urgent   = "e53935"
+
+# The only opacity levels used anywhere.
+[opacity]
+popup  = 0.9  # menus, tooltips
+active = 0.67 # checked tool buttons, selected tabs
+muted  = 0.5  # buttons, fields, separators
+hover  = 0.3
+
+[ui]
+radius      = 4  # px, every rounded corner
+border      = 1  # px, every frame
+padding     = 6  # px, horizontal text padding in buttons and fields
