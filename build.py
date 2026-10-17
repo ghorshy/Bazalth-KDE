@@ -303,13 +303,13 @@ def draw_indicators(canvas: Canvas, p: SimpleNamespace) -> None:
         "normal": Look(fill=(c.surface, o.muted), border=(c.border, 1)),
         "focused": Look(fill=(c.surface, 1), border=(c.textDim, 1)),
         "pressed": Look(fill=(c.overlay, 1), border=(c.textDim, 1)),
-        "disabled": Look(fill=(c.surface, o.muted / 2), border=(c.border, o.muted)),
+        "disabled": Look(fill=(c.surface, o.muted * o.disabled), border=(c.border, o.disabled)),
     }
     on = {
         "normal": Look(fill=(c.text, 1)),
         "focused": Look(fill=(c.text, 1)),
         "pressed": Look(fill=(c.textDim, 1)),
-        "disabled": Look(fill=(c.textFaint, o.muted)),
+        "disabled": Look(fill=(c.text, o.disabled)),
     }
     for prefix in ("", "menu-"):
         for state in off:
@@ -341,7 +341,7 @@ def frames(p: SimpleNamespace) -> list[Frame]:
     hover = Look(fill=(c.surface, o.hover))
 
     def disabled(look: Look) -> Look:
-        dim = lambda paint: paint and (paint[0], paint[1] * o.muted)
+        dim = lambda paint: paint and (paint[0], paint[1] * o.disabled)
         return Look(fill=dim(look.fill), border=dim(look.border))
 
     # Buttons and combo boxes: notification action buttons.
@@ -375,8 +375,10 @@ def frames(p: SimpleNamespace) -> list[Frame]:
     # Kvantum highlights menu rows with the pressed/toggled look; a solid surface
     # reads better than the popup hover tint over a whole menu.
     menu_row = {**row, "pressed": Look(fill=(c.surface, 1)), "toggled": Look(fill=(c.surface, 1))}
-    # Menus and tooltips: Quickshell popup surface.
-    popup = {"normal": Look(fill=(c.base, o.popup), border=(c.border, o.popup))}
+    # Tooltips: Quickshell popup surface. Menus: the same, but opaque, so the window
+    # under a context menu doesn't show through it.
+    tooltip = {"normal": Look(fill=(c.base, o.popup), border=(c.border, o.popup))}
+    menu = {"normal": Look(fill=(c.base, 1), border=(c.border, 1))}
 
     groove, thumb = size.groove, size.thumb
     return [
@@ -388,8 +390,8 @@ def frames(p: SimpleNamespace) -> list[Frame]:
         Frame("tab", f, r, flat),
         Frame("itemview", f, r, row),
         Frame("menuitem", f, r, menu_row),
-        Frame("menu", size.popup, r, popup),
-        Frame("tooltip", size.popup, r, popup),
+        Frame("menu", size.popup, r, menu),
+        Frame("tooltip", size.popup, r, tooltip),
         Frame("tabframe", f, r, {"normal": Look(border=(c.surface, o.muted))}),
         # Focus rectangle around text (check boxes, list rows); Kvantum names its
         # pieces focus-<side>, without a state.

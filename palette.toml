@@ -27,10 +27,13 @@ urgent   = "e53935"
 
 # The only opacity levels used anywhere.
 [opacity]
-popup  = 0.9  # menus, tooltips
-active = 0.67 # checked tool buttons, selected tabs
-muted  = 0.5  # buttons, fields, separators
-hover  = 0.3
+popup    = 0.9  # tooltips
+active   = 0.67 # checked tool buttons, selected tabs
+muted    = 0.5  # buttons, fields, separators
+hover    = 0.3
+# Disabled frames: their normal look at this opacity. Kvantum hard-codes it and ignores
+# the -disabled SVG elements, so they are drawn with it too, and GTK uses the same value.
+disabled = 0.7
 
 [ui]
 radius      = 4  # px, every rounded corner
