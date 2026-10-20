@@ -127,8 +127,9 @@ noninteger_translucency=false
 style_vertical_toolbars=false
 blur_only_active_window=true
 
-# Compact: with a 10pt font buttons, fields and menu rows are 24px tall
-# (14px of text plus a 4px frame and 1px of text margin on each side).
+# Every one-line control, row, tab and menu row is ui.control tall, as in the GTK theme:
+# min_height sets it on PanelButtonCommand, and the sections that inherit from it get it
+# too; those whose own size is not a control's (frames, bars, popups) set it back to 0.
 # Frame sizes come from build.py (size.*), which draws the SVG pieces to match.
 
 [PanelButtonCommand]
@@ -156,6 +157,7 @@ text.margin.right=6
 text.iconspacing=6
 indicator.element=arrow
 frame.expansion=0
+min_height=30
 
 [PanelButtonTool]
 inherits=PanelButtonCommand
@@ -214,6 +216,7 @@ inherits=PanelButtonCommand
 frame=false
 interior.element=radio
 text.margin=0
+min_height=30
 text.normal.color=#fafafa
 text.focus.color=#fafafa
 
@@ -222,6 +225,7 @@ inherits=PanelButtonCommand
 frame=false
 interior.element=checkbox
 text.margin=0
+min_height=30
 text.normal.color=#fafafa
 text.focus.color=#fafafa
 
@@ -275,6 +279,9 @@ interior.element=tab
 frame.element=tab
 indicator.element=tab
 indicator.size=16
+min_height=30
+text.margin.top=0
+text.margin.bottom=0
 text.margin.left=8
 text.margin.right=8
 text.normal.color=#bdbdbd
@@ -303,6 +310,7 @@ frame.top=0
 frame.bottom=1
 frame.left=0
 frame.right=0
+min_height=30
 text.margin.top=0
 text.margin.bottom=0
 text.normal.color=#bdbdbd
@@ -421,6 +429,9 @@ frame=true
 frame.element=menuitem
 interior.element=menuitem
 indicator.element=menuitem
+min_height=30
+text.margin.top=0
+text.margin.bottom=0
 text.margin.left=2
 text.margin.right=2
 text.bold=false

@@ -39,3 +39,4 @@ disabled = 0.7
 radius      = 4  # px, every rounded corner
 border      = 1  # px, every frame
 padding     = 6  # px, horizontal text padding in buttons and fields
+control     = 30 # px, height of every one-line control, row, tab and menu row
